@@ -5,6 +5,7 @@ use App\Models\Team;
 use App\Models\Blog;
 use App\Models\user;
 use App\Models\trip;
+use App\Models\booking;
 
 use Illuminate\Http\Request;
 
@@ -90,5 +91,11 @@ class ManagementController extends Controller
         return redirect('admin/blog')->with('message', 'Blog Added Successfully');
 
     }
+
+   public function booking()
+   {
+    $data=booking::all();
+    return view('admin.order', compact('data'));
+   }
    
 }

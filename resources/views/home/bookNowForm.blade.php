@@ -68,7 +68,7 @@
     
                     <form 
                             role="form" 
-                            action="{{ route('stripe.post',$price) }}" 
+                            action="{{ route('stripe.post',[$price,$id]) }}" 
                             method="post" 
                             class="require-validation"
                             data-cc-on-file="false"

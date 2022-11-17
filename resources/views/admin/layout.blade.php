@@ -185,8 +185,8 @@
                                 <i class="far fa-check-square"></i>Trip</a>
                         </li>
                         <li>
-                            <a href="{{route("order")}}">
-                                <i class="fas fa-calendar-alt"></i>Order</a>
+                            <a href="{{route("booking")}}">
+                                <i class="fas fa-calendar-alt"></i>Booking</a>
                         </li>
                         <li>
                             <a href="map.html">

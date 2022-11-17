@@ -28,6 +28,7 @@
         <th scope="col">Trip</th>
         <th scope="col">Email</th>
         <th scope="col">Price</th>
+        <th scope="col">Action</th>
         
         
       </tr>
@@ -43,6 +44,36 @@
         
         
   </tr>
+  @foreach ($data as $order)
+        
+  <tbody>
+    <tr>
+      
+      <td>{{$order->id}}</td>
+      <td>{{$order->name}}</td>
+      <td>{{$order->email}}</td>
+      <td>{{$order->trip}}</td>
+      <td>{{$order->price}}</td>
+      
+      
+      
+     
+ 
+      <td>
+        <form action="" method="post">
+            @csrf
+            @method('Delete')
+            <a href="" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this')">Delete</a>
+        </form> 
+      </td> 
+       {{-- <td>
+        <a href="{{ route('updateProductForm', $order->id) }}" class="btn btn-info" onclick="return confirm('Are you sure you want to Change this')">UPDATE</a>
+      </td>  --}}
+      
+</tr>
+  
+  </tbody>
+  @endforeach
     
     </tbody>
    

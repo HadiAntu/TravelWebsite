@@ -8,6 +8,7 @@ use App\Models\user;
 use App\Models\booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class TripController extends Controller
 {
     public function trip()
@@ -52,10 +53,9 @@ class TripController extends Controller
 
     public function bookNowForm($price,$id)
     {
-        // dd($id);
-        return view('home.bookNowForm',compact('price'));
+        return view('home.bookNowForm',compact('price','id'));
     }
-    public function stripePost(Request $request, $price)
+    public function stripePost(Request $request, $price, $id)
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
     
@@ -67,16 +67,20 @@ class TripController extends Controller
         ]);
 
         $user=Auth::user();
-        $id = $user->id;
-        // dd($id);
-        $name=user::find($id);
-        // $cart=cart::where('userId','=',$id)->get();
-$n = $name->name;
-        $booking=new booking();
-            $booking->name=$n;
-            $booking->email=$name->email;
-            // $booking->price=$price;
-            $booking->save();
+        $trip=trip::find($id);
+        $booking=new booking;
+
+        $booking->name=$user->name;
+        $booking->email=$user->email;
+        $booking->trip=$trip->title;
+        $booking->price=$trip->price;
+
+        $booking->save();
+         
+
+
+
+       
 
         Session::flash('success', 'Payment successful! You will get our Call soon');
         return back();

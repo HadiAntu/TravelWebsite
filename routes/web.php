@@ -49,7 +49,8 @@ Route::middleware([
     Route::post('/admin/dashboard',[ManagementController::class,'dashBoardHomePage'])->name('dashBoardHomePage');
     Route::get('/admin/trip',[TripController::class,'trip'])->name('trip');
     Route::post('/admin/tripadd',[TripController::class,'tripadd'])->name('tripadd');
-    Route::get('/admin/order',[TripController::class,'order'])->name('order');
+  
+    Route::get('/admin/booking', [ManagementController::class,'booking'])->name('booking');
 
     
 
@@ -64,7 +65,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/bookNowForm/{price}/{id}', [TripController::class,'bookNowForm'])->name('bookNowForm');
-    Route::post('/stripe/{price}', [TripController::class,'stripePost'])->name('stripe.post');
+    Route::post('/stripe/{price}/{id}', [TripController::class,'stripePost'])->name('stripe.post');
 });
 
 
